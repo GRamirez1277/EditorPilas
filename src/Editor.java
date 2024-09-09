@@ -1,3 +1,4 @@
+
 import java.awt.Color;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
@@ -37,7 +38,7 @@ public class Editor extends javax.swing.JFrame {
         estiloCopiado = new AttributeSet[0];
         documento = areaTexto.getStyledDocument();
         estilo = areaTexto.addStyle("Estilito", null);
-        
+
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         String[] fuentes = ge.getAvailableFontFamilyNames();
 
@@ -49,17 +50,17 @@ public class Editor extends javax.swing.JFrame {
         pilaPortapapeles = new Stack<>();
 
         areaTexto.addKeyListener(new java.awt.event.KeyAdapter() {
-    @Override
-    public void keyPressed(java.awt.event.KeyEvent evt) {
-        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_BACK_SPACE || evt.getKeyCode() == java.awt.event.KeyEvent.VK_DELETE) {
-            return;
-        }
-        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_LEFT || evt.getKeyCode() == java.awt.event.KeyEvent.VK_RIGHT) {
-            return;
-        }
-        combinarEstilos();
-    }
-});
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_BACK_SPACE || evt.getKeyCode() == java.awt.event.KeyEvent.VK_DELETE) {
+                    return;
+                }
+                if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_LEFT || evt.getKeyCode() == java.awt.event.KeyEvent.VK_RIGHT) {
+                    return;
+                }
+                combinarEstilos();
+            }
+        });
 
         areaTexto.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -72,10 +73,12 @@ public class Editor extends javax.swing.JFrame {
             }
 
             @Override
-            public void removeUpdate(DocumentEvent e) {}
+            public void removeUpdate(DocumentEvent e) {
+            }
 
             @Override
-            public void changedUpdate(DocumentEvent e) {}
+            public void changedUpdate(DocumentEvent e) {
+            }
         });
         setLocationRelativeTo(null);
     }
@@ -145,93 +148,93 @@ public class Editor extends javax.swing.JFrame {
         });
 
         javax.swing.JPanel panelBotones = new javax.swing.JPanel();
-panelBotones.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        panelBotones.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-botonCortar = new javax.swing.JButton();
-botonCortar.setBackground(new java.awt.Color(255, 255, 255));
-botonCortar.setForeground(new java.awt.Color(0, 0, 0));
-botonCortar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cortar.png")));
-botonCortar.setText("Cortar");
-botonCortar.addActionListener(new ActionListener() {
-    public void actionPerformed(ActionEvent evt) {
-        botonCortarActionPerformed(evt);
-    }
-});
+        botonCortar = new javax.swing.JButton();
+        botonCortar.setBackground(new java.awt.Color(255, 255, 255));
+        botonCortar.setForeground(new java.awt.Color(0, 0, 0));
+        botonCortar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cortar.png")));
+        botonCortar.setText("Cortar");
+        botonCortar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                botonCortarActionPerformed(evt);
+            }
+        });
 
-botonCopiar = new javax.swing.JButton();
-botonCopiar.setBackground(new java.awt.Color(255, 255, 255));
-botonCopiar.setForeground(new java.awt.Color(0, 0, 0));
-botonCopiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/copiar.png")));
-botonCopiar.setText("Copiar");
-botonCopiar.addActionListener(new ActionListener() {
-    public void actionPerformed(ActionEvent evt) {
-        botonCopiarActionPerformed(evt);
-    }
-});
+        botonCopiar = new javax.swing.JButton();
+        botonCopiar.setBackground(new java.awt.Color(255, 255, 255));
+        botonCopiar.setForeground(new java.awt.Color(0, 0, 0));
+        botonCopiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/copiar.png")));
+        botonCopiar.setText("Copiar");
+        botonCopiar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                botonCopiarActionPerformed(evt);
+            }
+        });
 
-botonPegar = new javax.swing.JButton();
-botonPegar.setBackground(new java.awt.Color(255, 255, 255));
-botonPegar.setForeground(new java.awt.Color(0, 0, 0));
-botonPegar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/pegar.png")));
-botonPegar.setText("Pegar");
-botonPegar.addActionListener(new ActionListener() {
-    public void actionPerformed(ActionEvent evt) {
-        botonPegarActionPerformed(evt);
-    }
-});
+        botonPegar = new javax.swing.JButton();
+        botonPegar.setBackground(new java.awt.Color(255, 255, 255));
+        botonPegar.setForeground(new java.awt.Color(0, 0, 0));
+        botonPegar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/pegar.png")));
+        botonPegar.setText("Pegar");
+        botonPegar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                botonPegarActionPerformed(evt);
+            }
+        });
 
-panelBotones.add(botonCortar);
-panelBotones.add(botonCopiar);
-panelBotones.add(botonPegar);
+        panelBotones.add(botonCortar);
+        panelBotones.add(botonCopiar);
+        panelBotones.add(botonPegar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-getContentPane().setLayout(layout);
-layout.setHorizontalGroup(
-    layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(abrirArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(guardarArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(selectorFuente, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tamañoFuente, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(colorLetra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonNegrita, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
-                .addComponent(panelBotones) // Agrega el panel de botones aquí
-                .addGap(59, 59, 59))
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE)))
-);
-layout.setVerticalGroup(
-    layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-    .addGroup(layout.createSequentialGroup()
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tamañoFuente, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(selectorFuente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(colorLetra)
-                    .addComponent(botonNegrita)))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelBotones))) // Agrega el panel de botones aquí
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-            .addComponent(abrirArchivo)
-            .addComponent(guardarArchivo))
-        .addContainerGap())
-);
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(abrirArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(guardarArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(selectorFuente, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(tamañoFuente, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(41, 41, 41)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(colorLetra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(botonNegrita, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(48, 48, 48)
+                                                .addComponent(panelBotones) // Agrega el panel de botones aquí
+                                                .addGap(59, 59, 59))
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+        layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(8, 8, 8)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(tamañoFuente, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(selectorFuente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(12, 12, 12)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(colorLetra)
+                                                        .addComponent(botonNegrita)))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(panelBotones))) // Agrega el panel de botones aquí
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(abrirArchivo)
+                                        .addComponent(guardarArchivo))
+                                .addContainerGap())
+        );
 
         pack();
     }
@@ -256,80 +259,58 @@ layout.setVerticalGroup(
     }
 
     private void botonCortarActionPerformed(ActionEvent evt) {
-        if(areaTexto.getSelectedText()!=null) {
-        portapapeles=areaTexto.getSelectedText();
-        textoCortado=true;
-        pilaPortapapeles.push(areaTexto.getText());
-        StyledDocument doc=areaTexto.getStyledDocument();
-        int start=areaTexto.getSelectionStart();
-        int length=areaTexto.getSelectionEnd() - start;
-        AttributeSet[] attrs = new AttributeSet[length];
-        for (int i = 0; i < length; i++) {
-            Element element = doc.getCharacterElement(start + i);
-            attrs[i] = element.getAttributes();
+        if (areaTexto.getSelectedText() != null) {
+            portapapeles = areaTexto.getSelectedText();
+            pilaPortapapeles.push(portapapeles);
+            textoCortado = true;
+            areaTexto.replaceSelection("");
         }
-        estiloCopiado = attrs;
-        areaTexto.replaceSelection("");
-        pilaPortapapeles.pop();
-    }
     }
 
     private void botonCopiarActionPerformed(ActionEvent evt) {
-    if(areaTexto.getSelectedText()!=null) {
-        pilaPortapapeles.push(areaTexto.getText());
-        portapapeles=areaTexto.getSelectedText();
-        StyledDocument doc = areaTexto.getStyledDocument();
-        int start=areaTexto.getSelectionStart();
-        int length=areaTexto.getSelectionEnd() - start;
-        AttributeSet[] attrs=new AttributeSet[length];
-        for (int i=0;i<length;i++) {
-            Element element = doc.getCharacterElement(start + i);
-            attrs[i] = element.getAttributes();
+        if (areaTexto.getSelectedText() != null) {
+            portapapeles = areaTexto.getSelectedText();
+            pilaPortapapeles.push(portapapeles);
+            textoCortado = false;
         }
-        estiloCopiado = attrs;
     }
-}
 
     private void botonPegarActionPerformed(ActionEvent evt) {
-        if(!portapapeles.isEmpty()){
-        pilaPortapapeles.push(areaTexto.getText());
-        StyledDocument doc = areaTexto.getStyledDocument();
-        int caretPosition = areaTexto.getCaretPosition();
-        for (int i = 0; i < estiloCopiado.length; i++) {
+        if (!pilaPortapapeles.isEmpty()) {
+            String textoPegar = pilaPortapapeles.peek();
+            StyledDocument doc = areaTexto.getStyledDocument();
+            int caretPosition = areaTexto.getCaretPosition();
             try {
-                doc.insertString(caretPosition + i, String.valueOf(portapapeles.charAt(i)), estiloCopiado[i]);
+                doc.insertString(caretPosition, textoPegar, null);
             } catch (BadLocationException ex) {
                 Logger.getLogger(Editor.class.getName()).log(Level.SEVERE, null, ex);
             }
+            if (textoCortado) {
+                pilaPortapapeles.pop();
+                textoCortado = false;
+            }
         }
-        if(textoCortado){
-            portapapeles="";
-            textoCortado=false;
-        }
-    }
     }
 
     private void combinarEstilos() {
-    try {
-        StyleConstants.setBold(estilo, botonNegrita.isSelected());
-        StyleConstants.setFontSize(estilo, Integer.parseInt(tamañoFuente.getSelectedItem().toString()));
-        StyleConstants.setFontFamily(estilo, selectorFuente.getSelectedItem().toString());
-        StyleConstants.setForeground(estilo, fuenteColor);
+        try {
+            StyleConstants.setBold(estilo, botonNegrita.isSelected());
+            StyleConstants.setFontSize(estilo, Integer.parseInt(tamañoFuente.getSelectedItem().toString()));
+            StyleConstants.setFontFamily(estilo, selectorFuente.getSelectedItem().toString());
+            StyleConstants.setForeground(estilo, fuenteColor);
 
-        int start = areaTexto.getSelectionStart();
-        int length = areaTexto.getSelectionEnd() - start;
+            int start = areaTexto.getSelectionStart();
+            int length = areaTexto.getSelectionEnd() - start;
 
-        if (length > 0) {
-            documento.setCharacterAttributes(start, length, estilo, true);
-        } else {
-            areaTexto.setCharacterAttributes(estilo, true);
+            if (length > 0) {
+                documento.setCharacterAttributes(start, length, estilo, true);
+            } else {
+                areaTexto.setCharacterAttributes(estilo, true);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
-    } catch (Exception ex) {
-        ex.printStackTrace();
     }
-}
-
-
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new Editor().setVisible(true));
