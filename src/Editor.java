@@ -24,8 +24,7 @@ import javax.swing.text.StyledDocument;
 
 public class Editor extends javax.swing.JFrame {
 
-    private Stack<String> pilaDeshacer;
-    private Stack<String> pilaRehacer;
+    private Stack<String> pilaPortapapeles;
     private String portapapeles = "";
     private Color fuenteColor = Color.black;
     private boolean textoCortado = false;
@@ -47,8 +46,7 @@ public class Editor extends javax.swing.JFrame {
             modelo.addElement(fuente);
         }
 
-        pilaDeshacer = new Stack<>();
-        pilaRehacer = new Stack<>();
+        pilaPortapapeles = new Stack<>();
 
         areaTexto.addKeyListener(new java.awt.event.KeyAdapter() {
     @Override
@@ -261,7 +259,7 @@ layout.setVerticalGroup(
         if(areaTexto.getSelectedText()!=null) {
         portapapeles=areaTexto.getSelectedText();
         textoCortado=true;
-        pilaDeshacer.push(areaTexto.getText());
+        pilaPortapapeles.push(areaTexto.getText());
         StyledDocument doc=areaTexto.getStyledDocument();
         int start=areaTexto.getSelectionStart();
         int length=areaTexto.getSelectionEnd() - start;
@@ -272,11 +270,13 @@ layout.setVerticalGroup(
         }
         estiloCopiado = attrs;
         areaTexto.replaceSelection("");
+        pilaPortapapeles.pop();
     }
     }
 
     private void botonCopiarActionPerformed(ActionEvent evt) {
-        if(areaTexto.getSelectedText()!=null) {
+    if(areaTexto.getSelectedText()!=null) {
+        pilaPortapapeles.push(areaTexto.getText());
         portapapeles=areaTexto.getSelectedText();
         StyledDocument doc = areaTexto.getStyledDocument();
         int start=areaTexto.getSelectionStart();
@@ -288,11 +288,11 @@ layout.setVerticalGroup(
         }
         estiloCopiado = attrs;
     }
-    }
+}
 
     private void botonPegarActionPerformed(ActionEvent evt) {
         if(!portapapeles.isEmpty()){
-        pilaDeshacer.push(areaTexto.getText());
+        pilaPortapapeles.push(areaTexto.getText());
         StyledDocument doc = areaTexto.getStyledDocument();
         int caretPosition = areaTexto.getCaretPosition();
         for (int i = 0; i < estiloCopiado.length; i++) {
@@ -315,20 +315,21 @@ layout.setVerticalGroup(
         StyleConstants.setFontSize(estilo, Integer.parseInt(tamañoFuente.getSelectedItem().toString()));
         StyleConstants.setFontFamily(estilo, selectorFuente.getSelectedItem().toString());
         StyleConstants.setForeground(estilo, fuenteColor);
+
         int start = areaTexto.getSelectionStart();
         int length = areaTexto.getSelectionEnd() - start;
+
         if (length > 0) {
             documento.setCharacterAttributes(start, length, estilo, true);
-        }
-        int caretPosition = areaTexto.getCaretPosition();
-        documento.insertString(caretPosition, " ", estilo);
-
-        if (caretPosition > 0 && documento.getText(caretPosition - 1, 1).equals(" ")) {
-            documento.remove(caretPosition - 1, 1);
+        } else {
+            areaTexto.setCharacterAttributes(estilo, true);
         }
     } catch (Exception ex) {
+        ex.printStackTrace();
     }
 }
+
+
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new Editor().setVisible(true));
@@ -345,6 +346,5 @@ layout.setVerticalGroup(
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JComboBox<String> selectorFuente;
     private javax.swing.JComboBox<String> tamañoFuente;
-    private javax.swing.ButtonGroup buttonGroup1;
     private java.awt.Button button1;
 }
